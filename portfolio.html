@@ -125,18 +125,19 @@
   .nav-cta:hover { background: var(--accent); color: var(--bg); }
 
   /* SECTIONS */
-  section { position: relative; z-index: 1; }
+  section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
 
   /* ─── HERO ─── */
   #hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0 4rem;
     position: relative;
     overflow: hidden;
   }
-  .hero-content { max-width: 800px; }
+  .hero-content { max-width: 800px; text-align: center; }
   .hero-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.78rem;
@@ -145,12 +146,17 @@
     text-transform: uppercase;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     margin-bottom: 2rem;
     opacity: 0;
     animation: fadeUp 0.8s forwards 0.3s;
   }
   .hero-tag::before {
+    content: '';
+    display: none;
+  }
+  .hero-tag::after {
     content: '';
     display: block;
     width: 40px;
@@ -161,7 +167,7 @@
     font-family: 'Playfair Display', serif;
     font-weight: 900;
     font-size: clamp(3rem, 7vw, 6.5rem);
-    line-height: 1;
+    line-height: 1.1;
     letter-spacing: -0.03em;
     opacity: 0;
     animation: fadeUp 0.8s forwards 0.5s;
@@ -172,13 +178,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    margin-top: 0.2em;
   }
   .hero-subtitle {
     font-size: 1.15rem;
     color: var(--muted);
     line-height: 1.7;
     max-width: 540px;
-    margin: 1.5rem 0 2.5rem;
+    margin: 1.5rem auto 2.5rem;
     font-weight: 300;
     opacity: 0;
     animation: fadeUp 0.8s forwards 0.7s;
@@ -187,6 +194,7 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
     opacity: 0;
     animation: fadeUp 0.8s forwards 0.9s;
   }
@@ -234,6 +242,7 @@
   .hero-stats {
     display: flex;
     gap: 3rem;
+    justify-content: center;
     margin-top: 4rem;
     padding-top: 3rem;
     border-top: 1px solid var(--border);
@@ -245,12 +254,14 @@
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--accent);
+    text-align: center;
   }
   .stat-label {
     font-size: 0.8rem;
     color: var(--muted);
     font-family: 'JetBrains Mono', monospace;
     letter-spacing: 0.05em;
+    text-align: center;
   }
 
   .hero-right {
@@ -260,6 +271,7 @@
     transform: translateY(-50%);
     opacity: 0;
     animation: fadeIn 1s forwards 1.2s;
+    display: none; /* Hidden for now */
   }
   .avatar-frame {
     width: 340px;
@@ -464,8 +476,6 @@
   /* ─── EXPERIENCE ─── */
   #experience {
     padding: 8rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
   }
   .exp-header { margin-bottom: 4rem; }
   .timeline { position: relative; }
@@ -624,8 +634,9 @@
     background: var(--surface);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+    max-width: 100%;
   }
-  .skills-categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem; }
+  .skills-categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
   .skill-cat {
     padding: 2rem;
     background: var(--card);
@@ -663,8 +674,6 @@
   #contact {
     padding: 8rem 4rem;
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
   }
   .contact-title {
     font-family: 'Playfair Display', serif;
@@ -754,15 +763,18 @@
   /* Glitch text */
   .glitch {
     position: relative;
+    display: inline-block;
   }
   .glitch::before, .glitch::after {
     content: attr(data-text);
     position: absolute;
     top: 0; left: 0;
+    width: 100%;
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    opacity: 0;
   }
   .glitch::before {
     animation: glitch1 4s infinite;
@@ -773,16 +785,16 @@
     clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
   }
   @keyframes glitch1 {
-    0%, 90%, 100% { transform: translate(0); }
-    91% { transform: translate(-2px, 1px); }
-    92% { transform: translate(2px, -1px); }
-    93% { transform: translate(0); }
+    0%, 90%, 100% { transform: translate(0); opacity: 0; }
+    91% { transform: translate(-2px, 1px); opacity: 0.8; }
+    92% { transform: translate(2px, -1px); opacity: 0.8; }
+    93% { transform: translate(0); opacity: 0; }
   }
   @keyframes glitch2 {
-    0%, 90%, 100% { transform: translate(0); }
-    91% { transform: translate(2px, -1px); }
-    92% { transform: translate(-2px, 1px); }
-    93% { transform: translate(0); }
+    0%, 90%, 100% { transform: translate(0); opacity: 0; }
+    91% { transform: translate(2px, -1px); opacity: 0.8; }
+    92% { transform: translate(-2px, 1px); opacity: 0.8; }
+    93% { transform: translate(0); opacity: 0; }
   }
 
   /* Scrolling marquee */
@@ -816,7 +828,6 @@
   @media (max-width: 1024px) {
     nav { padding: 1.5rem 2rem; }
     #hero { padding: 0 2rem; }
-    .hero-right { display: none; }
     #about { padding: 5rem 2rem; grid-template-columns: 1fr; gap: 3rem; }
     #experience { padding: 5rem 2rem; }
     #projects { padding: 5rem 2rem; }
